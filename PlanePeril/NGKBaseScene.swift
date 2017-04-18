@@ -9,6 +9,7 @@
 import Foundation
 import SpriteKit
 import CoreMotion
+import MapKit
 
 class NGKPhysicsCategory{
     static let Player: UInt32 = 0b1 << 0
@@ -53,9 +54,13 @@ class NGKBaseScene: SKScene, SKPhysicsContactDelegate{
     
     var madFly: SKSpriteNode!
     
+    
+    //MARK: ******** Main Map View
+    var mapView = MKMapView()
+    
     //MARK: ******** MotionManger 
     
-    var motionManger = MainMotionManager.sharedMotionManager
+    var motionManager = MainMotionManager.sharedMotionManager
     
     
     override func didMove(to view: SKView) {
@@ -66,6 +71,42 @@ class NGKBaseScene: SKScene, SKPhysicsContactDelegate{
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
+        if let view = self.view{
+            let locationCoordinate = CLLocationCoordinate2D(latitude: 25.033499866, longitude: 121.558997764)
+            let locationSpan = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
+            
+            mapView.region = MKCoordinateRegion(center: locationCoordinate, span: locationSpan)
+        view.addSubview(mapView)
+        
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        
+       mapView.alpha = 0.40
+        
+        NSLayoutConstraint.activate([
+            mapView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            mapView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            mapView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.90),
+            mapView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.90)
+            ])
+            
+            
+            /**
+            let imageView = SKView()
+            mapView.addSubview(imageView)
+            
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                imageView.centerXAnchor.constraint(equalTo: mapView.centerXAnchor),
+                imageView.centerYAnchor.constraint(equalTo: mapView.centerYAnchor),
+                imageView.widthAnchor.constraint(equalTo: mapView.widthAnchor, multiplier: 0.50),
+                imageView.heightAnchor.constraint(equalTo: mapView.heightAnchor, multiplier: 0.50)
+                ])
+            
+            **/
+            
+        }
+        
         configureWorld()
         
         player = Player(color: .Blue, playerStartXPos: Double(playerStartXPos), normalForwardVelocity: 100)
@@ -73,6 +114,7 @@ class NGKBaseScene: SKScene, SKPhysicsContactDelegate{
         
         world.addChild(player)
         
+       
         /**
         let madFlyTexture = SKTexture(image: #imageLiteral(resourceName: "flyFly2"))
         let flyTextureSize = madFlyTexture.size()
@@ -187,6 +229,26 @@ class NGKBaseScene: SKScene, SKPhysicsContactDelegate{
         playerProgress = player.position.x - playerStartXPos
         
         player.update(deltaTime: dt)
+        
+        if motionManager.isDeviceMotionAvailable && motionManager.isGyroAvailable,let motionData = motionManager.deviceMotion{
+            let horizontalAttitude = -motionData.attitude.roll
+            let horizontalRotationRate = -motionData.rotationRate.y
+            
+           print("The horizontal attitude is \(horizontalAttitude), and the horizontal rotation rate is \(horizontalRotationRate)")
+            
+            if((horizontalAttitude > 0.00 && horizontalRotationRate > 0.00) || (horizontalAttitude < 0.00 && horizontalRotationRate < 0.00)){
+                let currentCenterCoordinate = mapView.centerCoordinate
+                
+                let adjustedLatitude = currentCenterCoordinate.latitude + horizontalRotationRate/100000
+                let adjustedLongitutde = currentCenterCoordinate.longitude
+                
+                mapView.centerCoordinate = CLLocationCoordinate2D(latitude: adjustedLatitude, longitude: adjustedLongitutde)
+            }
+            
+          
+            
+            
+        }
        
         
     }
@@ -198,7 +260,7 @@ class NGKBaseScene: SKScene, SKPhysicsContactDelegate{
         centerOnNode(node: player)
         
         //Apply impulse to player based on input from gyroscope data
-        player.getMotionInput(motionManager: motionManger)
+        player.getMotionInput(motionManager: motionManager)
 
         //Loop the SkyCastle background so that it continually stays in step with the plaer
         updateMovingBackground(playerProgress: playerProgress)
