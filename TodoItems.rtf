@@ -1,0 +1,15 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 //Letters for the UI and label have quirks and idiosyncrasies due to slight differences in the texture sizes;  labelmaker class must take into account the erratic sizes of some labels by providing constraints \
+\
+//The reference axis for getting CoreMotion input must be update based on how long the user is in a a given position to take into account of different playing postures (standing upright, lying down, etc. ); a separate class can handle this functionality - that is, adjusting the reference axis for the phone "attitude" (the degree of screen rotation with respect to the phone's landscaping axis, xAxis for game in landscape mode); the starting axis should be determined dynamically based on the user's posture \
+\
+//optional: zRotation of the plane can be updated dynamically based on the "yaw" of the phone (i.e. tilting the screen on the zAxis)\
+\
+//consider giving negative velocity to different background objects to create a parallax effects; each background can have its own update function that executes independently so that the backgrounds are looped back to their starting position within its respective layer\
+}
