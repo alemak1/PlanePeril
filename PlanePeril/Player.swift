@@ -88,7 +88,7 @@ class Player: SKSpriteNode{
         }
     }
     
-    //MARK: ****** Current Texture-based and NonTexture-based animations are computed propertiers that are based on the currentFuelState and currentHealthState, respectively.  These animations will change in respond to the property observers that adjust the fuel state and health state, respectively... Initial texture and non-texture animations are set at initializations (if necessary)
+    //MARK: ****** Current Texture-based and NonTexture-based animations are computed properties that are based on the currentFuelState and currentHealthState, respectively.  These animations will change in respond to the property observers that adjust the fuel state and health state, respectively... Initial texture and non-texture animations are set at initializations (if necessary)
 
     var currentTextureBasedAnimation: SKAction?{
         get{
@@ -128,11 +128,11 @@ class Player: SKSpriteNode{
         }
     }
     
-    
     //MARK: ******* Applied Force (dY) is determined dynamically at run-time based on gyroscope data input
     
     var appliedForceDeltaY: CGFloat = 0.00
     
+    var normalForwardVelocity: Double = 100.0
   
    
     required init?(coder aDecoder: NSCoder) {
@@ -192,6 +192,9 @@ class Player: SKSpriteNode{
         self.playerStartXPos = playerStartXPos
         self.position = CGPoint(x: playerStartXPos, y: 0.00)
         
+        //Set normalForwardVelocity
+        self.normalForwardVelocity = Double(normalForwardVelocity)
+        
         //Set default physics properites 
         configureDefaultPhysicsBody(physicsBodyTexture: initializedPlayerTexture, physicsBodySize: textureSize, normalForwardVelocity: normalForwardVelocity)
         
@@ -218,9 +221,9 @@ class Player: SKSpriteNode{
         
         //Set category, collision, and contact bitmasks
         
-        self.physicsBody?.collisionBitMask = NGKPhysicsCategory.Barrier | NGKPhysicsCategory.Enemy
-        self.physicsBody?.categoryBitMask = NGKPhysicsCategory.Player
-        self.physicsBody?.contactTestBitMask = NGKPhysicsCategory.Letter | NGKPhysicsCategory.Collectible
+        self.physicsBody?.collisionBitMask = NGKCollisionConfiguration.Player.collisionMask
+        self.physicsBody?.categoryBitMask = NGKCollisionConfiguration.Player.categoryMask
+        self.physicsBody?.contactTestBitMask = NGKCollisionConfiguration.Player.contactMask
         
         //Set linear and angular velocity properties
         self.physicsBody?.linearDamping = 0.00
@@ -247,6 +250,7 @@ class Player: SKSpriteNode{
                 if(isAboveScreen || isBelowScreen) { appliedForceDeltaY = 0 }
                 
                 self.physicsBody?.velocity.dy = appliedForceDeltaY
+                self.physicsBody?.velocity.dx = CGFloat(normalForwardVelocity)
             }
             
             
@@ -309,13 +313,13 @@ extension Player{
   
     //MARK: Fuel State variables
     enum FuelState{
-        case LowFuel, MediumFuel, HighFuel
+        case LowFuel, MediumFuel, HighFuel, NoFuel
     }
     
 
     //MARK: Health State variables
     enum HealthState{
-        case Normal, LowDamage, MediumDamage, HighDamage
+        case Normal, LowDamage, MediumDamage, HighDamage, Dead
     }
     
     

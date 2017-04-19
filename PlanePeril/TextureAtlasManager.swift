@@ -22,6 +22,7 @@ class TextureAtlasManager{
         case EnemySun
         case ExplosiveElements
         case Flags
+        case Frog
         case Gems
         case GoldCoin
         case HUD
@@ -72,6 +73,7 @@ class TextureAtlasManager{
     var tilesAtlas: SKTextureAtlas?
     var springAtlas: SKTextureAtlas?
     var planesAtlas: SKTextureAtlas?
+    var frogAtlas: SKTextureAtlas?
     
     private init(){
         configureTextureAtlases()
@@ -97,6 +99,8 @@ class TextureAtlasManager{
             return explosiveElementsAtlas
         case .Flags:
             return flagsAtlas
+        case .Frog:
+            return frogAtlas
         case .Gems:
             return gemsAtlas
         case .GoldCoin:
@@ -144,6 +148,7 @@ class TextureAtlasManager{
         enemySunAtlas = SKTextureAtlas(named: "EnemySun.atlas")
         explosiveElementsAtlas = SKTextureAtlas(named: "ExplosiveElements.atlas")
         flagsAtlas = SKTextureAtlas(named: "Flags.atls")
+        frogAtlas = SKTextureAtlas(named: "Frog.atlas")
         gemsAtlas = SKTextureAtlas(named: "Gems.atlas")
         goldCoinAtlas = SKTextureAtlas(named: "GoldCoin.atlas")
         hudAtlas = SKTextureAtlas(named: "HUD.atlas")
@@ -161,6 +166,7 @@ class TextureAtlasManager{
         tilesAtlas = SKTextureAtlas(named: "Tiles.atlas")
         userInterfaceElementsAtlas = SKTextureAtlas(named: "UIElements.atlas")
         planesAtlas = SKTextureAtlas(named: "Planes.atlas")
+        
     }
     
 }

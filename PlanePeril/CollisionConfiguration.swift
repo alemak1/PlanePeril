@@ -46,14 +46,14 @@ struct CollisionConfiguration{
     }
     
     var collisionMask: UInt32{
-        var mask = CollisionConfiguration.definedCollisions[self]?.map({ $0.rawValue }).reduce(0){ return $0 | $1}
+        let mask = CollisionConfiguration.definedCollisions[self]?.map({ $0.rawValue }).reduce(0){ return $0 | $1}
         
         return mask ?? 0
          
     }
     
     var contactMask: UInt32{
-        var mask = CollisionConfiguration.definedContactNotifications[self]?.map({ $0.rawValue}).reduce(0){ return $0 | $1}
+        let mask = CollisionConfiguration.definedContactNotifications[self]?.map({ $0.rawValue}).reduce(0){ return $0 | $1}
         
         return mask ?? 0
     }

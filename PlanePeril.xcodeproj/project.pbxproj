@@ -22,10 +22,13 @@
 		BD26837B1EA49A2000033B1B /* fgEncounter4.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD26837A1EA49A2000033B1B /* fgEncounter4.sks */; };
 		BD2694AE1E9F33C3008C5C21 /* GKUpDownMoveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2694AD1E9F33C3008C5C21 /* GKUpDownMoveComponent.swift */; };
 		BD285AF01EA07A4E00F69910 /* PPAnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD285AEF1EA07A4E00F69910 /* PPAnimationComponent.swift */; };
+		BD28AAB01EA7170D0039BFC7 /* NGKCollisionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD28AAAF1EA7170D0039BFC7 /* NGKCollisionConfiguration.swift */; };
 		BD29189B1EA5C4A000207B83 /* TextureAtlasManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD29189A1EA5C4A000207B83 /* TextureAtlasManager.swift */; };
 		BD2918AF1E9F61EB004E7879 /* GKMadFly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2918AE1E9F61EB004E7879 /* GKMadFly.swift */; };
 		BD2918B11E9F62C9004E7879 /* GKCoherencyAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2918B01E9F62C9004E7879 /* GKCoherencyAgent.swift */; };
 		BD2918B31E9F635F004E7879 /* GKFlyAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2918B21E9F635F004E7879 /* GKFlyAgent.swift */; };
+		BD292DCC1EA625BF00D0D1C2 /* MapScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD292DCB1EA625BF00D0D1C2 /* MapScene.swift */; };
+		BD292DCE1EA636A100D0D1C2 /* CompassDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD292DCD1EA636A100D0D1C2 /* CompassDirection.swift */; };
 		BD2A79091EA365A00000D897 /* bgEncounter1.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD2A79081EA365A00000D897 /* bgEncounter1.sks */; };
 		BD2A790B1EA3662B0000D897 /* bgEncounter2.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD2A790A1EA3662B0000D897 /* bgEncounter2.sks */; };
 		BD2A790D1EA366540000D897 /* bgEncounter3.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD2A790C1EA366540000D897 /* bgEncounter3.sks */; };
@@ -97,6 +100,17 @@
 		BD5E1E241EA316B900387F9D /* NGKBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5E1E231EA316B900387F9D /* NGKBackground.swift */; };
 		BD5E1E261EA316C600387F9D /* NGKBaseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5E1E251EA316C600387F9D /* NGKBaseScene.swift */; };
 		BD5E1E281EA31C9000387F9D /* Background5.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD5E1E271EA31C9000387F9D /* Background5.sks */; };
+		BD6D62BD1EA72C120092F506 /* Spikeball.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6D62BC1EA72C120092F506 /* Spikeball.swift */; };
+		BD6D62BF1EA730E90092F506 /* EnemySun.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6D62BE1EA730E90092F506 /* EnemySun.swift */; };
+		BD6D62C11EA730F30092F506 /* MadFly.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6D62C01EA730F30092F506 /* MadFly.swift */; };
+		BD6D62C31EA737AE0092F506 /* Frog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6D62C21EA737AE0092F506 /* Frog.swift */; };
+		BD6D62C51EA73CE70092F506 /* PreviewScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD6D62C41EA73CE70092F506 /* PreviewScene.sks */; };
+		BDD149581EA6FB1400F91A3D /* NGKBaseSceneActiveState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD149571EA6FB1400F91A3D /* NGKBaseSceneActiveState.swift */; };
+		BDD1495A1EA6FB2400F91A3D /* NGKBaseScenePauseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD149591EA6FB2400F91A3D /* NGKBaseScenePauseState.swift */; };
+		BDD1495C1EA6FB3000F91A3D /* NGKBaseSceneSuccessState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD1495B1EA6FB3000F91A3D /* NGKBaseSceneSuccessState.swift */; };
+		BDD1495E1EA6FB4100F91A3D /* NGKBaseSceneFailState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD1495D1EA6FB4100F91A3D /* NGKBaseSceneFailState.swift */; };
+		BDD149601EA701DC00F91A3D /* NGKBaseLevelConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD1495F1EA701DC00F91A3D /* NGKBaseLevelConfiguration.swift */; };
+		BDD149631EA7083F00F91A3D /* NGKBaseScene+ScreenRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD149621EA7083F00F91A3D /* NGKBaseScene+ScreenRecording.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,10 +129,13 @@
 		BD26837A1EA49A2000033B1B /* fgEncounter4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fgEncounter4.sks; sourceTree = "<group>"; };
 		BD2694AD1E9F33C3008C5C21 /* GKUpDownMoveComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKUpDownMoveComponent.swift; sourceTree = "<group>"; };
 		BD285AEF1EA07A4E00F69910 /* PPAnimationComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPAnimationComponent.swift; sourceTree = "<group>"; };
+		BD28AAAF1EA7170D0039BFC7 /* NGKCollisionConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NGKCollisionConfiguration.swift; sourceTree = "<group>"; };
 		BD29189A1EA5C4A000207B83 /* TextureAtlasManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextureAtlasManager.swift; sourceTree = "<group>"; };
 		BD2918AE1E9F61EB004E7879 /* GKMadFly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKMadFly.swift; sourceTree = "<group>"; };
 		BD2918B01E9F62C9004E7879 /* GKCoherencyAgent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKCoherencyAgent.swift; sourceTree = "<group>"; };
 		BD2918B21E9F635F004E7879 /* GKFlyAgent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKFlyAgent.swift; sourceTree = "<group>"; };
+		BD292DCB1EA625BF00D0D1C2 /* MapScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapScene.swift; sourceTree = "<group>"; };
+		BD292DCD1EA636A100D0D1C2 /* CompassDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassDirection.swift; sourceTree = "<group>"; };
 		BD2A79081EA365A00000D897 /* bgEncounter1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = bgEncounter1.sks; sourceTree = "<group>"; };
 		BD2A790A1EA3662B0000D897 /* bgEncounter2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = bgEncounter2.sks; sourceTree = "<group>"; };
 		BD2A790C1EA366540000D897 /* bgEncounter3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = bgEncounter3.sks; sourceTree = "<group>"; };
@@ -192,6 +209,17 @@
 		BD5E1E231EA316B900387F9D /* NGKBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NGKBackground.swift; sourceTree = "<group>"; };
 		BD5E1E251EA316C600387F9D /* NGKBaseScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NGKBaseScene.swift; sourceTree = "<group>"; };
 		BD5E1E271EA31C9000387F9D /* Background5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Background5.sks; sourceTree = "<group>"; };
+		BD6D62BC1EA72C120092F506 /* Spikeball.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spikeball.swift; sourceTree = "<group>"; };
+		BD6D62BE1EA730E90092F506 /* EnemySun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemySun.swift; sourceTree = "<group>"; };
+		BD6D62C01EA730F30092F506 /* MadFly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadFly.swift; sourceTree = "<group>"; };
+		BD6D62C21EA737AE0092F506 /* Frog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Frog.swift; sourceTree = "<group>"; };
+		BD6D62C41EA73CE70092F506 /* PreviewScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PreviewScene.sks; sourceTree = "<group>"; };
+		BDD149571EA6FB1400F91A3D /* NGKBaseSceneActiveState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NGKBaseSceneActiveState.swift; sourceTree = "<group>"; };
+		BDD149591EA6FB2400F91A3D /* NGKBaseScenePauseState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NGKBaseScenePauseState.swift; sourceTree = "<group>"; };
+		BDD1495B1EA6FB3000F91A3D /* NGKBaseSceneSuccessState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NGKBaseSceneSuccessState.swift; sourceTree = "<group>"; };
+		BDD1495D1EA6FB4100F91A3D /* NGKBaseSceneFailState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NGKBaseSceneFailState.swift; sourceTree = "<group>"; };
+		BDD1495F1EA701DC00F91A3D /* NGKBaseLevelConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NGKBaseLevelConfiguration.swift; sourceTree = "<group>"; };
+		BDD149621EA7083F00F91A3D /* NGKBaseScene+ScreenRecording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NGKBaseScene+ScreenRecording.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +251,15 @@
 				BD2642AC1E9E1A1E00F61114 /* SpriteKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BD292DCA1EA625B100D0D1C2 /* MKGame */ = {
+			isa = PBXGroup;
+			children = (
+				BD292DCB1EA625BF00D0D1C2 /* MapScene.swift */,
+				BD292DCD1EA636A100D0D1C2 /* CompassDirection.swift */,
+			);
+			name = MKGame;
 			sourceTree = "<group>";
 		};
 		BD2A79071EA365000000D897 /* BackgroundObjectManager */ = {
@@ -272,6 +309,7 @@
 		BD2C51211E9E040000118764 /* PlanePeril */ = {
 			isa = PBXGroup;
 			children = (
+				BD292DCA1EA625B100D0D1C2 /* MKGame */,
 				BD5E1E221EA3169D00387F9D /* NGKVersion */,
 				BD5E1E191EA30F5700387F9D /* BackgroundScenes */,
 				BD252E281EA25E1100E672F3 /* SKSScenes */,
@@ -369,8 +407,13 @@
 				BD4D07991EA468F800762B09 /* Player.swift */,
 				BD4D07971EA45EBB00762B09 /* Letter.swift */,
 				BD2F03DD1EA38077008A63D7 /* Cloud.swift */,
-				BD30C0F21EA4B360007F3441 /* LetterLabel.swift */,
 				BD29189A1EA5C4A000207B83 /* TextureAtlasManager.swift */,
+				BD28AAAF1EA7170D0039BFC7 /* NGKCollisionConfiguration.swift */,
+				BD6D62BC1EA72C120092F506 /* Spikeball.swift */,
+				BD6D62BE1EA730E90092F506 /* EnemySun.swift */,
+				BD6D62C01EA730F30092F506 /* MadFly.swift */,
+				BD6D62C21EA737AE0092F506 /* Frog.swift */,
+				BD6D62C41EA73CE70092F506 /* PreviewScene.sks */,
 			);
 			name = GameCharactersAndObjects;
 			sourceTree = "<group>";
@@ -447,6 +490,7 @@
 		BD5E1E221EA3169D00387F9D /* NGKVersion */ = {
 			isa = PBXGroup;
 			children = (
+				BDD149611EA707F300F91A3D /* SceneSupport */,
 				BD2F03DC1EA3805D008A63D7 /* GameCharactersAndObjects */,
 				BD4D079B1EA46A6100762B09 /* LetterManager */,
 				BD2A79101EA3672B0000D897 /* ForegroundObjectManager */,
@@ -455,6 +499,28 @@
 				BD5E1E251EA316C600387F9D /* NGKBaseScene.swift */,
 			);
 			name = NGKVersion;
+			sourceTree = "<group>";
+		};
+		BDD149561EA6FAFA00F91A3D /* NGKBaseSceneStates */ = {
+			isa = PBXGroup;
+			children = (
+				BDD149571EA6FB1400F91A3D /* NGKBaseSceneActiveState.swift */,
+				BDD149591EA6FB2400F91A3D /* NGKBaseScenePauseState.swift */,
+				BDD1495B1EA6FB3000F91A3D /* NGKBaseSceneSuccessState.swift */,
+				BDD1495D1EA6FB4100F91A3D /* NGKBaseSceneFailState.swift */,
+			);
+			name = NGKBaseSceneStates;
+			sourceTree = "<group>";
+		};
+		BDD149611EA707F300F91A3D /* SceneSupport */ = {
+			isa = PBXGroup;
+			children = (
+				BDD149561EA6FAFA00F91A3D /* NGKBaseSceneStates */,
+				BDD1495F1EA701DC00F91A3D /* NGKBaseLevelConfiguration.swift */,
+				BD30C0F21EA4B360007F3441 /* LetterLabel.swift */,
+				BDD149621EA7083F00F91A3D /* NGKBaseScene+ScreenRecording.swift */,
+			);
+			name = SceneSupport;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -535,6 +601,7 @@
 				BD5E1E1F1EA313E800387F9D /* Background3.sks in Resources */,
 				BD4D07A11EA46B0300762B09 /* letterEncounter2.sks in Resources */,
 				BD2C512F1E9E040000118764 /* LaunchScreen.storyboard in Resources */,
+				BD6D62C51EA73CE70092F506 /* PreviewScene.sks in Resources */,
 				BD26837B1EA49A2000033B1B /* fgEncounter4.sks in Resources */,
 				BD5E1E281EA31C9000387F9D /* Background5.sks in Resources */,
 				BD2A790B1EA3662B0000D897 /* bgEncounter2.sks in Resources */,
@@ -551,9 +618,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDD149581EA6FB1400F91A3D /* NGKBaseSceneActiveState.swift in Sources */,
 				BD2C5E8E1EA209F7007A8358 /* ConstraintHelper.swift in Sources */,
 				BD2CB0041EA228C6002FD010 /* CollisionConfiguration.swift in Sources */,
 				BD2A790F1EA366B20000D897 /* BackgroundObjectManager.swift in Sources */,
+				BD6D62C31EA737AE0092F506 /* Frog.swift in Sources */,
 				BD310DB91EA0B05000284478 /* PPPlayerPlaneHighDamageState.swift in Sources */,
 				BD310DBE1EA0B0BF00284478 /* PPPlayerPlaneEntity.swift in Sources */,
 				BD2683751EA48E3100033B1B /* ForegroundObject.swift in Sources */,
@@ -561,21 +630,28 @@
 				BD2C51471E9E073F00118764 /* GKPlaneTypeComponent.swift in Sources */,
 				BD310DC61EA0CFDE00284478 /* PPRenderComponent.swift in Sources */,
 				BD2C513B1E9E04F400118764 /* GKMotionResponderComponent.swift in Sources */,
+				BD28AAB01EA7170D0039BFC7 /* NGKCollisionConfiguration.swift in Sources */,
 				BD310DB11EA0AF7400284478 /* PPPlayerPlaneMediumFuelState.swift in Sources */,
 				BD310DB71EA0B02100284478 /* PPPlayerPlaneMediumDamageState.swift in Sources */,
 				BD2C51541E9E0EEF00118764 /* RandomGenerator.swift in Sources */,
+				BDD149631EA7083F00F91A3D /* NGKBaseScene+ScreenRecording.swift in Sources */,
+				BDD1495C1EA6FB3000F91A3D /* NGKBaseSceneSuccessState.swift in Sources */,
+				BD6D62BD1EA72C120092F506 /* Spikeball.swift in Sources */,
 				BD4D07981EA45EBB00762B09 /* Letter.swift in Sources */,
 				BD2C514D1E9E0D3B00118764 /* EntityManager.swift in Sources */,
 				BD310DBB1EA0B07800284478 /* PPPlayerPlaneDeadState.swift in Sources */,
 				BD30C0F31EA4B360007F3441 /* LetterLabel.swift in Sources */,
 				BD2683731EA48C5400033B1B /* ForegroundObjectManager.swift in Sources */,
+				BDD149601EA701DC00F91A3D /* NGKBaseLevelConfiguration.swift in Sources */,
 				BD2918B11E9F62C9004E7879 /* GKCoherencyAgent.swift in Sources */,
 				BD252E271EA2534500E672F3 /* BaseSceneA.swift in Sources */,
+				BD292DCC1EA625BF00D0D1C2 /* MapScene.swift in Sources */,
 				BD32E5141E9E4099001CAA00 /* GKChasingEnemy.swift in Sources */,
 				BD29189B1EA5C4A000207B83 /* TextureAtlasManager.swift in Sources */,
 				BD2C5E8A1EA202AD007A8358 /* AnimationHelper.swift in Sources */,
 				BD2642B51E9E378100F61114 /* GKEnemySpikeBall.swift in Sources */,
 				BD2C51381E9E049700118764 /* GKPlayer.swift in Sources */,
+				BDD1495A1EA6FB2400F91A3D /* NGKBaseScenePauseState.swift in Sources */,
 				BD310DB51EA0AFF200284478 /* PPPlayerPlaneLowDamageState.swift in Sources */,
 				BD2C514F1E9E0D6D00118764 /* GKEnemy.swift in Sources */,
 				BD303BDB1EA1D79000A763FA /* GKMotionResponderComponentAsynchronous.swift in Sources */,
@@ -583,7 +659,9 @@
 				BD310DC01EA0B13700284478 /* PPFuelTankComponent.swift in Sources */,
 				BD5E1E241EA316B900387F9D /* NGKBackground.swift in Sources */,
 				BD5E1E261EA316C600387F9D /* NGKBaseScene.swift in Sources */,
+				BD6D62C11EA730F30092F506 /* MadFly.swift in Sources */,
 				BD310DB31EA0AFAD00284478 /* PPPlayerPlaneHighFuelState.swift in Sources */,
+				BD292DCE1EA636A100D0D1C2 /* CompassDirection.swift in Sources */,
 				BD285AF01EA07A4E00F69910 /* PPAnimationComponent.swift in Sources */,
 				BD32E51A1E9E4696001CAA00 /* GKChasingEnemySun.swift in Sources */,
 				BD2C5E8C1EA2054C007A8358 /* UIHelper.swift in Sources */,
@@ -596,6 +674,7 @@
 				BD2C51511E9E0E3F00118764 /* EnemyAgentScene.swift in Sources */,
 				BD303BDD1EA1E1B700A763FA /* MainMotionManager.swift in Sources */,
 				BD2642B31E9E36F400F61114 /* GKEnemySun.swift in Sources */,
+				BDD1495E1EA6FB4100F91A3D /* NGKBaseSceneFailState.swift in Sources */,
 				BD2694AE1E9F33C3008C5C21 /* GKUpDownMoveComponent.swift in Sources */,
 				BD2C513D1E9E052900118764 /* GKSpriteComponent.swift in Sources */,
 				BD32E5161E9E42D8001CAA00 /* CoreMotionHelper.swift in Sources */,
@@ -611,6 +690,7 @@
 				BD2CB0061EA23E16002FD010 /* WeaponGrade.swift in Sources */,
 				BD2C51431E9E058C00118764 /* GKPhysicsBodyComponent.swift in Sources */,
 				BD310DC41EA0B86100284478 /* PPHealthComponent.swift in Sources */,
+				BD6D62BF1EA730E90092F506 /* EnemySun.swift in Sources */,
 				BD310DAF1EA0AF4100284478 /* PPPlayerPlaneLowFuelState.swift in Sources */,
 				BD2C513F1E9E054500118764 /* GKTransformComponent.swift in Sources */,
 				BD2C514A1E9E0C6100118764 /* SceneA.swift in Sources */,

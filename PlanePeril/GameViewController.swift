@@ -40,10 +40,12 @@ class GameViewController: UIViewController {
             // Load the SKScene from 'GameScene.sks'
             let scene = SceneB(size: view.bounds.size)
             let ngkBaseScene = NGKBaseScene(size: view.bounds.size)
+            let mapScene = MapScene(size: view.bounds.size)
             
             // Set the scale mode to scale to fit the window
             scene.scaleMode = .aspectFill
             ngkBaseScene.scaleMode = .aspectFill
+            mapScene.scaleMode = .aspectFill
             
             // Present the scene
             view.presentScene(ngkBaseScene)

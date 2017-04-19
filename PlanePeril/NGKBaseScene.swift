@@ -9,21 +9,15 @@
 import Foundation
 import SpriteKit
 import CoreMotion
+import GameplayKit
 import MapKit
 
-class NGKPhysicsCategory{
-    static let Player: UInt32 = 0b1 << 0
-    static let Letter: UInt32 = 0b1 << 1
-    static let Enemy: UInt32 =  0b1 << 2
-    static let Barrier: UInt32 = 0b1 << 3
-    static let Collectible: UInt32 = 0b1 << 4
-    static let NoncollidingEnemy: UInt32 = 0b1 << 5
-    static let Portal: UInt32 = 0b1 << 6
-    
-}
+
 
 class NGKBaseScene: SKScene, SKPhysicsContactDelegate{
     
+    //MARK: Experimental Enemies
+    var frog: Frog!
     
     //MARK: Timer-Related Variables 
     var lastUpdatedTime: TimeInterval = 0.00
@@ -52,16 +46,47 @@ class NGKBaseScene: SKScene, SKPhysicsContactDelegate{
     
     var staticBackground: SKSpriteNode!
     
-    var madFly: SKSpriteNode!
     
+   
+    //MARK: ******** Target-Word/In-Progress Word (When the In-Progress word matches the Target Word, the scene changes to a success state)
     
-    //MARK: ******** Main Map View
-    var mapView = MKMapView()
+
+    var targetWord: String!
+    var inProgressWord: String!
+    
     
     //MARK: ******** MotionManger 
     
     var motionManager = MainMotionManager.sharedMotionManager
     
+    //MARK: ************ State Machine (for managing different scene states; a success state is achieved when the In-Progress Word matches the Target Word; a fail state occurs when the player either runs out of fuel or when health level diminishes to zero; a pause state occurs when the player presses the pause button)
+    
+    lazy var stateMachine: GKStateMachine = GKStateMachine(states: [
+        NGKBaseSceneActiveState(levelScene: self),
+        NGKBaseScenePauseState(levelScene: self),
+        NGKBaseSceneFailState(levelScene: self),
+        NGKBaseSceneSuccessState(levelScene: self),
+
+        
+        ])
+    
+    
+    //MARK: ********** Initializers 
+    
+    override init(size: CGSize) {
+        super.init(size: size)
+    }
+    
+    convenience init(size: CGSize, levelConfiguration: NGKBaseLevelConfiguration) {
+        self.init(size: size)
+        
+        self.targetWord = levelConfiguration.targetWord
+        self.inProgressWord = ""
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)
@@ -71,42 +96,6 @@ class NGKBaseScene: SKScene, SKPhysicsContactDelegate{
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
-        if let view = self.view{
-            let locationCoordinate = CLLocationCoordinate2D(latitude: 25.033499866, longitude: 121.558997764)
-            let locationSpan = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
-            
-            mapView.region = MKCoordinateRegion(center: locationCoordinate, span: locationSpan)
-        view.addSubview(mapView)
-        
-        mapView.translatesAutoresizingMaskIntoConstraints = false
-        
-       mapView.alpha = 0.40
-        
-        NSLayoutConstraint.activate([
-            mapView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            mapView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            mapView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.90),
-            mapView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.90)
-            ])
-            
-            
-            /**
-            let imageView = SKView()
-            mapView.addSubview(imageView)
-            
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            
-            NSLayoutConstraint.activate([
-                imageView.centerXAnchor.constraint(equalTo: mapView.centerXAnchor),
-                imageView.centerYAnchor.constraint(equalTo: mapView.centerYAnchor),
-                imageView.widthAnchor.constraint(equalTo: mapView.widthAnchor, multiplier: 0.50),
-                imageView.heightAnchor.constraint(equalTo: mapView.heightAnchor, multiplier: 0.50)
-                ])
-            
-            **/
-            
-        }
-        
         configureWorld()
         
         player = Player(color: .Blue, playerStartXPos: Double(playerStartXPos), normalForwardVelocity: 100)
@@ -114,35 +103,48 @@ class NGKBaseScene: SKScene, SKPhysicsContactDelegate{
         
         world.addChild(player)
         
-       
-        /**
-        let madFlyTexture = SKTexture(image: #imageLiteral(resourceName: "flyFly2"))
-        let flyTextureSize = madFlyTexture.size()
+    
+        let cliffPoint = CGPoint(x: 600, y: 10)
         
-        madFly = SKSpriteNode(texture: madFlyTexture)
-        madFly.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        madFly.position = CGPoint(x: 60, y: 60)
-        madFly.physicsBody = SKPhysicsBody(texture: madFlyTexture, size: flyTextureSize)
-        madFly.physicsBody?.affectedByGravity = false
-        madFly.physicsBody?.collisionBitMask = NGKPhysicsCategory.Player
-        madFly.physicsBody?.categoryBitMask = NGKPhysicsCategory.Enemy | NGKPhysicsCategory.Barrier
-        madFly.physicsBody?.contactTestBitMask = 0
-        madFly.physicsBody?.velocity.dx = -100
-        
-        self.addChild(madFly)
-        **/
-        
-        //Spawn the parallax backgrounds in the backgrounds array
-       /**
-        let grassBackground = NGKBackground(sksFileName: "Background4", zPosition: -1, movementMultiplier: 0.4).childNode(withName: "RootNode")
-        
-        grassBackground?.setScale(scale*0.60)
-        grassBackground?.position = CGPoint(x: 0.00, y: -UIScreen.main.bounds.size.height*0.20)
+        let cliffNodeLeftTexture = SKTexture(image: #imageLiteral(resourceName: "grassCliff_left"))
+        let cliffNodeLeftSize = cliffNodeLeftTexture.size()
+        let cliffNodeLeft = SKSpriteNode(texture: cliffNodeLeftTexture)
+        cliffNodeLeft.xScale *= 0.50
+        cliffNodeLeft.yScale *= 0.50
 
-        grassBackground?.move(toParent: self)
-        **/
+        cliffNodeLeft.anchorPoint = CGPoint(x: 1.0, y: 1.0)
+        cliffNodeLeft.position = cliffPoint
+        cliffNodeLeft.physicsBody = SKPhysicsBody(texture: cliffNodeLeftTexture, size: cliffNodeLeftSize)
+        cliffNodeLeft.physicsBody?.affectedByGravity = false
+        cliffNodeLeft.physicsBody?.isDynamic = false
         
-     
+        let cliffNodeRightTexture = SKTexture(image: #imageLiteral(resourceName: "grassCliff_right"))
+        let cliffNodeRightSize = cliffNodeRightTexture.size()
+        let cliffNodeRight = SKSpriteNode(texture: cliffNodeRightTexture)
+        cliffNodeRight.anchorPoint = CGPoint(x: 0, y: 1.0)
+        cliffNodeRight.position = cliffPoint
+        cliffNodeRight.physicsBody = SKPhysicsBody(texture: cliffNodeRightTexture, size: cliffNodeRightSize)
+        cliffNodeRight.physicsBody?.affectedByGravity = false
+        cliffNodeRight.physicsBody?.isDynamic = false
+        cliffNodeRight.xScale *= 0.50
+        cliffNodeRight.yScale *= 0.50
+
+        world.addChild(cliffNodeRight)
+        world.addChild(cliffNodeLeft)
+        
+        if let newFrog = Frog(position: cliffPoint, scalingFactor: 0.40, jumpActionDelay: 5.0){
+            self.frog = newFrog
+            world.addChild(frog)
+            self.frog.position = CGPoint(x: cliffPoint.x, y: cliffPoint.y + 40)
+        }
+        
+        
+        if let cliff2 = SKScene(fileNamed: "PreviewScene")?.childNode(withName: "Island1"){
+            cliff2.move(toParent: world)
+            cliff2.position = CGPoint(x: cliffPoint.x + 100, y: cliffPoint.y)
+        }
+        
+        
         configureStaticBackground()
         configureMovingBackground()
         
@@ -229,26 +231,10 @@ class NGKBaseScene: SKScene, SKPhysicsContactDelegate{
         playerProgress = player.position.x - playerStartXPos
         
         player.update(deltaTime: dt)
+        frog.update(deltaTime: dt)
         
-        if motionManager.isDeviceMotionAvailable && motionManager.isGyroAvailable,let motionData = motionManager.deviceMotion{
-            let horizontalAttitude = -motionData.attitude.roll
-            let horizontalRotationRate = -motionData.rotationRate.y
-            
-           print("The horizontal attitude is \(horizontalAttitude), and the horizontal rotation rate is \(horizontalRotationRate)")
-            
-            if((horizontalAttitude > 0.00 && horizontalRotationRate > 0.00) || (horizontalAttitude < 0.00 && horizontalRotationRate < 0.00)){
-                let currentCenterCoordinate = mapView.centerCoordinate
-                
-                let adjustedLatitude = currentCenterCoordinate.latitude + horizontalRotationRate/100000
-                let adjustedLongitutde = currentCenterCoordinate.longitude
-                
-                mapView.centerCoordinate = CLLocationCoordinate2D(latitude: adjustedLatitude, longitude: adjustedLongitutde)
-            }
-            
-          
-            
-            
-        }
+        //Update the stateMachine for the NGKBaseScene
+        stateMachine.update(deltaTime: dt)
        
         
     }
@@ -338,24 +324,27 @@ extension NGKBaseScene{
        
 
         switch(otherBodyPhysicsCategory){
-            case NGKPhysicsCategory.Letter:
+            case NGKCollisionConfiguration.Letter.rawValue:
                 if let otherBodyNode = otherBody.node,let otherBodyName = otherBodyNode.name, let letter = Letter.LetterCategory(rawValue: otherBodyName)?.stringLetter{
-                    
                     print(letter)
                     otherBodyNode.removeFromParent()
-                    player.takeDamage()
-                    
                 }
                 break
-            case NGKPhysicsCategory.Enemy:
+            case NGKCollisionConfiguration.Enemy.rawValue:
+                print("Hit an enemy")
+                player.takeDamage()
                 break
-            case NGKPhysicsCategory.NoncollidingEnemy:
+            case NGKCollisionConfiguration.Barrier.rawValue:
+                print("Hit a barrier")
                 break
-            case NGKPhysicsCategory.Barrier:
+            case NGKCollisionConfiguration.Collectible.rawValue:
                 break
-            case NGKPhysicsCategory.Collectible:
+                print("Hit a collectible item")
+            case NGKCollisionConfiguration.NonCollidingEnemy.rawValue:
+                print("Hit a non-colliding enemy")
                 break
-            case NGKPhysicsCategory.Portal:
+            case NGKCollisionConfiguration.Portal.rawValue:
+                print("Hit a portal")
                 break
             default:
                 print("No contact logic implemented")

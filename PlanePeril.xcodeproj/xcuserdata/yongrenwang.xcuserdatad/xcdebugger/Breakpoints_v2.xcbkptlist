@@ -70,7 +70,7 @@
                   moduleName = "PlanePeril"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yongrenwang/Desktop/RecentApps/PlanePeril/PlanePeril/UIHelper.swift"
-                  timestampString = "514201986.574502"
+                  timestampString = "514278077.465763"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "17"
@@ -85,7 +85,7 @@
                   moduleName = "PlanePeril"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yongrenwang/Desktop/RecentApps/PlanePeril/PlanePeril/UIHelper.swift"
-                  timestampString = "514201986.575926"
+                  timestampString = "514278077.46723"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
@@ -118,13 +118,61 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PlanePeril/Player.swift"
-            timestampString = "514197298.553872"
+            timestampString = "514274717.953309"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "338"
-            endingLineNumber = "338"
+            startingLineNumber = "342"
+            endingLineNumber = "342"
             landmarkName = "ConfigurePlaneAnimations()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PlanePeril/Spikeball.swift"
+            timestampString = "514272325.501751"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "init(coder:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlanePeril.Spikeball.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;PlanePeril.Spikeball&gt;"
+                  moduleName = "PlanePeril"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yongrenwang/Desktop/RecentApps/PlanePeril/PlanePeril/Spikeball.swift"
+                  timestampString = "514278077.470214"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlanePeril.Spikeball.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;PlanePeril.Spikeball&gt;"
+                  moduleName = "PlanePeril"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yongrenwang/Desktop/RecentApps/PlanePeril/PlanePeril/Spikeball.swift"
+                  timestampString = "514278077.471662"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
